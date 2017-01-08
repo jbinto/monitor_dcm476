@@ -4,6 +4,8 @@
   "description": "example",
   "main": "build/example.js",
   "scripts": {
+    "start": "babel-node src/index.js",
+    "watch": "nodemon src/index.js --exec babel-node src/index.js",
     "test": "nyc --reporter=html --reporter=lcov --reporter=text npm run test:nocover",
     "test:nocover": "mocha --full-trace -R nyan --compilers js:babel-core/register test/example.test.js",
     "build": "babel src/example.js --out-file build/example.js",
@@ -30,9 +32,14 @@
     "eslint-plugin-import": "^2.2.0",
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
     "nyc": "^10.0.0"
   },
   "dependencies": {
+    "bluebird": "^3.4.7",
+    "fs-promise": "^1.0.0",
+    "lodash": "^4.17.4",
+    "moment": "^2.17.1",
     "x-ray": "^2.3.1"
   }
 }
