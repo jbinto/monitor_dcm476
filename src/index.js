@@ -63,13 +63,20 @@ const analyze = (err, data) => {
     const values = [
       timestamp,
       ...(Object.values(obj)),
+      '\n',
     ]
-    fsp.appendFile(csvFilename, values)
+    const line = values.join(', ')
+    fsp.appendFile(csvFilename, line)
+    console.log(line)
   })
 }
 
 const performLogging = () => {
   x(DCM476_DIAG_URL, ['table.light tr td'])(analyze)
+
+  // run infinite loop every 30s
+  setTimeout(performLogging, 10000)
 }
+
 
 performLogging()
